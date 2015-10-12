@@ -1,7 +1,7 @@
 /**
  *  BaseRecyclerAdapter
  *  com.alaric.norris.app.credit.points.ui.adapters
- * 	Function： 	${TODO}
+ * 	Function:  	${TODO}
  *  date            author
  *  2015/9/10      AlaricNorris
  *	Copyright (c) 2015, TNT All Rights Reserved.
@@ -52,7 +52,6 @@ public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, 
     @Override
     public void onBindViewHolder ( final VH holder, int position ) {
         onBindViewHolderBase( holder, position );
-        // 如果设置了回调，则设置点击事件
         if ( mRecyclerViewOnItemClickLitener != null ) {
             holder.itemView.setOnClickListener(
                     new View.OnClickListener() {

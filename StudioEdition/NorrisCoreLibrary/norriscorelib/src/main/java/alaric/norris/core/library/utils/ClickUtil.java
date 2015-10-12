@@ -1,7 +1,6 @@
 /**
  * 	ClickUtil.java
  * 	com.alaric.norris.game.ieue.utils
- * 	Function： 	TODO 
  *   ver     date      		author
  *   		 2013-12-15 		AlaricNorris
  *	Copyright (c) 2013, TNT All Rights Reserved.

@@ -1,7 +1,7 @@
 /**
  *  RecyclerViewOnItemClickLitener
  *  com.alaric.norris.app.credit.points.ui.listeners
- * 	Function： 	${TODO} 
+ * 	Function: 	${TODO}
  *  date            author
  *  2015/9/6      AlaricNorris
  *	Copyright (c) 2015, TNT All Rights Reserved.
