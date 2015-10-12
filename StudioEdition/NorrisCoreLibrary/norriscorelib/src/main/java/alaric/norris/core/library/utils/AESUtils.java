@@ -10,14 +10,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * @author carlos carlosk@163.com
- * @version 创建时间：2012-5-17 上午9:48:35 类说明
  */
 
 public class AESUtils {
     public static final String TAG = "AESUtils";
 
     public static String encrypt ( String seed, String clearText ) {
-        //        Log.i( TAG, "加密前的seed=" + seed + ",内容为:" + clearText );
+        //        Log.i( TAG, "seed=" + seed + ",:" + clearText );
         byte[] result = null;
         try {
             byte[] rawkey = getRawKey( seed.getBytes() );
@@ -26,20 +25,20 @@ public class AESUtils {
         catch ( Exception e ) {
             e.printStackTrace();
         }
-        //        Log.i( TAG, "加密后的内容为:" + content );
+        //        Log.i( TAG, ":" + content );
         return toHex( result );
 
     }
 
     public static String decrypt ( String seed, String encrypted ) {
-        //        Log.i( TAG, "解密前的seed=" + seed + ",内容为:" + encrypted );
+        //        Log.i( TAG, "seed=" + seed + ",:" + encrypted );
         byte[] rawKey;
         try {
             rawKey = getRawKey( seed.getBytes() );
             byte[] enc = toByte( encrypted );
             byte[] result = decrypt( rawKey, enc );
             String content = new String( result );
-            //            Log.i( TAG, "解密后的内容为:" + content );
+            //            Log.i( TAG, ":" + content );
             return content;
         }
         catch ( Exception e ) {
@@ -51,7 +50,7 @@ public class AESUtils {
 
     private static byte[] getRawKey ( byte[] seed ) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance( "AES" );
-        // SHA1PRNG 强随机种子算法, 要区别4.2以上版本的调用方法
+        // SHA1PRNG above 4.2
         SecureRandom sr = null;
         if ( android.os.Build.VERSION.SDK_INT >= 17 ) {
             sr = SecureRandom.getInstance( "SHA1PRNG", "Crypto" );

@@ -3,7 +3,6 @@
  *  com.alaric.norris.app.credit.points.ui.adapters
  * 	Function： 	${TODO}
  *  date            author
- *  ──────────────────────────────────
  *  2015/9/10      AlaricNorris
  *	Copyright (c) 2015, TNT All Rights Reserved.
  */
@@ -24,14 +23,10 @@ import java.util.List;
  *  @since I used to be a programmer like you, then I took an arrow in the knee
  *  @Date 2015     2015/9/10     16:06
  *  @see        ${TAGS}
- *  ──────────────────────────────────────────────────────────────────────────────────────────────────────
  *	@Fields
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
  *	@Methods ${ENCLOSING_TYPE}
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
  * 	Modified By 	AlaricNorris		 2015/9/1016:06
  *	Modifications:	${TODO}
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
  */
 public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, T >
         extends RecyclerView.Adapter< VH > {

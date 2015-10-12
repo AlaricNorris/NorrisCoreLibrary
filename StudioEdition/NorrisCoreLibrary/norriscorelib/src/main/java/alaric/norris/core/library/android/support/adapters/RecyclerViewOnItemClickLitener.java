@@ -3,7 +3,6 @@
  *  com.alaric.norris.app.credit.points.ui.listeners
  * 	Function： 	${TODO} 
  *  date            author
- *  ──────────────────────────────────
  *  2015/9/6      AlaricNorris
  *	Copyright (c) 2015, TNT All Rights Reserved.
  */
@@ -21,14 +20,10 @@ import android.view.View;
  *  @since      I used to be a programmer like you, then I took an arrow in the knee 
  *  @Date       2015     2015/9/6     9:50
  *  @see        ${TAGS}
- *  ──────────────────────────────────────────────────────────────────────────────────────────────────────
- *	@Fields     
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
+ *	@Fields
  *	@Methods    ${ENCLOSING_TYPE}
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
  * 	Modified By 	AlaricNorris		 2015/9/69:50
  *	Modifications:	${TODO}
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
  */
 
 public interface RecyclerViewOnItemClickLitener {
