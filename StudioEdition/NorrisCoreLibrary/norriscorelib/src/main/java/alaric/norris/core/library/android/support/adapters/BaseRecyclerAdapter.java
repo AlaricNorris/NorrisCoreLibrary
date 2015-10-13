@@ -1,7 +1,7 @@
 /**
  *  BaseRecyclerAdapter
  *  com.alaric.norris.app.credit.points.ui.adapters
- * 	Function:  	${TODO}
+ * 	Function:  	BaseAdapter in universe
  *  date            author
  *  2015/9/10      AlaricNorris
  *	Copyright (c) 2015, TNT All Rights Reserved.
@@ -13,53 +13,68 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.List;
+
 /**
- *  ClassName:  BaseRecyclerAdapter
- *  Function:   ${TODO}  ADD FUNCTION
- *  Reason:     ${TODO}  ADD REASON
- *  @author AlaricNorris
- *  @contact Norris.sly@gmail.com
- *  @version Ver 1.0
- *  @since I used to be a programmer like you, then I took an arrow in the knee
- *  @Date 2015     2015/9/10     16:06
- *  @see        ${TAGS}
- *	@Fields
- *	@Methods ${ENCLOSING_TYPE}
- * 	Modified By 	AlaricNorris		 2015/9/1016:06
- *	Modifications:	${TODO}
+ * Common base RecyclerAdapter
+ * Features:    with click/long click listener
+ * @param <VH>  Custom ViewHolder
+ * @param <T>   Custom Class
  */
 public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, T >
         extends RecyclerView.Adapter< VH > {
 
+    /**
+     * the context
+     */
     protected Context mContext;
+    /**
+     * the list
+     */
     protected List< T > mList;
-    protected RecyclerViewOnItemClickLitener mRecyclerViewOnItemClickLitener;
+    /**
+     * click listener
+     */
+    protected RecyclerViewOnItemClickListener mRecyclerViewOnItemClickListener;
+    /**
+     * Constructor method
+     * @param inContext context
+     * @param inList    list
+     */
     public BaseRecyclerAdapter ( Context inContext, List< T > inList ) {
         this.mContext = inContext;
         this.mList = inList;
     }
-    public T getItemAtPosition ( int inPosition ) {
+    /**
+     * get an object from the list
+     * @param inPosition location in list
+     * @return T    the object
+     */
+    public T obtainItemAtPosition ( int inPosition ) {
         if ( mList != null ) {
             return mList.get( inPosition );
         }
         return null;
     }
-    public void setRecyclerViewOnItemClickLitener (
-            RecyclerViewOnItemClickLitener mRecyclerViewOnItemClickLitener
+    /**
+     * set the click listener for adapter
+     * @param mRecyclerViewOnItemClickLitener custom listener
+     */
+    public void setRecyclerViewOnItemClickListener (
+            RecyclerViewOnItemClickListener mRecyclerViewOnItemClickLitener
     ) {
-        this.mRecyclerViewOnItemClickLitener = mRecyclerViewOnItemClickLitener;
+        this.mRecyclerViewOnItemClickListener = mRecyclerViewOnItemClickLitener;
     }
     @Override
     public void onBindViewHolder ( final VH holder, int position ) {
         onBindViewHolderBase( holder, position );
-        if ( mRecyclerViewOnItemClickLitener != null ) {
+        if ( mRecyclerViewOnItemClickListener != null ) {
             holder.itemView.setOnClickListener(
                     new View.OnClickListener() {
 
                         @Override
                         public void onClick ( View v ) {
-                            if ( mRecyclerViewOnItemClickLitener != null )
-                                mRecyclerViewOnItemClickLitener.onItemClick(
+                            if ( mRecyclerViewOnItemClickListener != null )
+                                mRecyclerViewOnItemClickListener.onItemClick(
                                         holder.itemView, holder.getLayoutPosition()
                                 );
                         }
@@ -70,8 +85,8 @@ public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, 
 
                         @Override
                         public boolean onLongClick ( View v ) {
-                            if ( mRecyclerViewOnItemClickLitener != null )
-                                mRecyclerViewOnItemClickLitener.onItemLongClick(
+                            if ( mRecyclerViewOnItemClickListener != null )
+                                mRecyclerViewOnItemClickListener.onItemLongClick(
                                         holder.itemView, holder.getLayoutPosition()
                                 );
                             return false;
@@ -80,6 +95,12 @@ public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, 
             );
         }
     }
+    /**
+     * the base method called in #onBindViewHolder()
+     * extracted for child to overload
+     * @param holder        the viewholder passed in #onBindViewHolder()
+     * @param position      the position passed in #onBindViewHolder()
+     */
     protected abstract void onBindViewHolderBase ( VH holder, int position );
 
     @Override

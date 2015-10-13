@@ -11,10 +11,8 @@ package alaric.norris.core.library.utils;
  *	Function: 	TODO ADD FUNCTION
  *	Reason:	 	TODO ADD REASON
  *    @author AlaricNorris        Norris.sly@gmail.com
- *	@version
+ *	@version 1.0
  *	@since Ver 1.0		I used to be a programmer like you, then I took an arrow in the knee
- *	@Date 2013        2013-12-15		pm4:39:29
- *	@see
  */
 public class ClickUtil {
 
@@ -73,33 +71,32 @@ public class ClickUtil {
     private static long mLastClickMillis;
 
     /**
-     *    @return
+     *    @return true:is  false:is not
      *	@version Ver 1.0
      * 	@since I used to be a programmer like you, then I took an arrow in the knee
      */
-    public static boolean isFastDoubleClick() {
+    public static boolean isFastDoubleClick () {
 
         long mCurrentMillis = System.currentTimeMillis();
         long mDeltaMillis = mCurrentMillis - mLastClickMillis;
         mLastClickMillis = mCurrentMillis;
-        if (0 < mDeltaMillis && mDeltaMillis < DELTA_100) {
+        if ( 0 < mDeltaMillis && mDeltaMillis < DELTA_100 ) {
             return true;
         }
         return false;
     }
 
     /**
-     *    @param        inDeltaTime
-     * 	@return
-     *	@version Ver 1.0
+     *    @param inDeltaTime    custom
+     * @return true:is  false:is not
      * 	@since I used to be a programmer like you, then I took an arrow in the knee 
      */
-    public static boolean isFastDoubleClick(long inDeltaTime) {
+    public static boolean isFastDoubleClick ( long inDeltaTime ) {
 
         long mCurrentMillis = System.currentTimeMillis();
         long mDeltaMillis = mCurrentMillis - mLastClickMillis;
         mLastClickMillis = mCurrentMillis;
-        if (0 < mDeltaMillis && mDeltaMillis < inDeltaTime) {
+        if ( 0 < mDeltaMillis && mDeltaMillis < inDeltaTime ) {
             return true;
         }
         return false;
