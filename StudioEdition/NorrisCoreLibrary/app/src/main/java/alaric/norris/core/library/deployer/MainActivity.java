@@ -1,9 +1,18 @@
 package alaric.norris.core.library.deployer;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.List;
+
+import alaric.norris.core.library.android.support.adapters.BaseRecyclerAdapter;
+import alaric.norris.core.library.utils.ClickUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,4 +43,33 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected( item );
     }
+
+    class TestAdapter extends BaseRecyclerAdapter< TestAdapter.ViewHolder, String > {
+        /**
+         * Constructor method
+
+         * @param inContext context
+         * @param inList    list
+         */
+        public TestAdapter ( Context inContext, List< String > inList ) {
+            super( inContext, inList );
+        }
+        @Override
+        protected void onBindViewHolderBase ( ViewHolder holder, int position ) {
+            ClickUtil.isFastDoubleClick();
+
+        }
+        @Override
+        public ViewHolder onCreateViewHolder ( ViewGroup viewGroup, int i ) {
+            return null;
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            public ViewHolder ( View itemView ) {
+                super( itemView );
+            }
+        }
+
+    }
+
 }
