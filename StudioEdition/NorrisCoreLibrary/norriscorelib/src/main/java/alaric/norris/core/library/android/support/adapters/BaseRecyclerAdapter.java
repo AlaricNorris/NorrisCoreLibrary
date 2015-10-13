@@ -18,9 +18,9 @@ import java.util.List;
  * Common base RecyclerAdapter
  * Features:    with click/long click listener
  * @param <VH>  Custom ViewHolder
- * @param <T>   Custom Class
+ * @param <Entity>   Custom Class
  */
-public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, T >
+public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, Entity >
         extends RecyclerView.Adapter< VH > {
 
     /**
@@ -30,7 +30,7 @@ public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, 
     /**
      * the list
      */
-    protected List< T > mList;
+    protected List< Entity > mList;
     /**
      * click listener
      */
@@ -40,16 +40,16 @@ public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, 
      * @param inContext context
      * @param inList    list
      */
-    public BaseRecyclerAdapter ( Context inContext, List< T > inList ) {
+    public BaseRecyclerAdapter ( Context inContext, List< Entity > inList ) {
         this.mContext = inContext;
         this.mList = inList;
     }
     /**
      * get an object from the list
      * @param inPosition location in list
-     * @return T    the object
+     * @return Entity    the object
      */
-    public T obtainItemAtPosition ( int inPosition ) {
+    public Entity obtainItemAtPosition ( int inPosition ) {
         if ( mList != null ) {
             return mList.get( inPosition );
         }

@@ -31,15 +31,15 @@ import java.util.List;
  *	Modifications:	${TODO}
  *	************************************************************************************************************************************************************************************************************
  */
-public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, T >
-        extends BaseRecyclerAdapter< VH, T > {
+public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Entity >
+        extends BaseRecyclerAdapter< VH, Entity > {
 
     /**
      * Constructor method
      * @param inContext context
      * @param inList    list
      */
-    public BaseListAdapter ( Context inContext, List< T > inList ) {
+    public BaseListAdapter ( Context inContext, List< Entity > inList ) {
         super( inContext, inList );
     }
 
@@ -55,7 +55,7 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, T >
      * @param list      new list to add
      * @return true:success
      */
-    public boolean addAll ( List< ? extends T > list ) {
+    public boolean addAll ( List< ? extends Entity > list ) {
         return mList.addAll( list );
     }
 
@@ -64,7 +64,7 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, T >
      * @param list      new list to add
      * @return true:success
      */
-    public boolean reload ( List< ? extends T > list ) {
+    public boolean reload ( List< ? extends Entity > list ) {
         mList.clear();
         return mList.addAll( list );
     }
@@ -85,26 +85,52 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, T >
 
     /**
      * getItem at position
-     * @param i      itemposition
+     * @param i     itemposition
      * @return itemObject
      */
-    public T getItem ( int i ) {
+    public Entity getItem ( int i ) {
         return mList.get( i );
     }
 
-    public void addItem ( T t ) {
-        mList.add( t );
+    /**
+     * addItem
+     * @param entity     new item to add
+     */
+    public void addItem ( Entity entity ) {
+        mList.add( entity );
     }
 
-    public T remove ( int i ) {
+    /**
+     * removeItem by position
+     * @param i     position
+     * @return removed Item
+     */
+    public Entity remove ( int i ) {
         return mList.remove( i );
     }
-
-    public long getItemId ( int id ) {
-        return id;
+    /**
+     * removeItem by object
+     * @param entity     object
+     * @return true:remove success
+     */
+    public boolean remove ( Entity entity ) {
+        return mList.remove( entity );
     }
 
-    public List< T > getList () {
+    /**
+     * getItemID
+     * @param position  itemPosition
+     * @return itemID
+     */
+    public long getItemId ( int position ) {
+        return position;
+    }
+
+    /**
+     * get the list
+     * @return the list
+     */
+    public List< Entity > getList () {
         return mList;
     }
 

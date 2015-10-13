@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import alaric.norris.core.library.android.support.adapters.BaseListAdapter;
 import alaric.norris.core.library.android.support.adapters.BaseRecyclerAdapter;
 import alaric.norris.core.library.utils.ClickUtil;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
+        new TestlistAdapter( getApplicationContext(), null ).reload( null );
     }
 
     @Override
@@ -52,6 +54,34 @@ public class MainActivity extends AppCompatActivity {
          * @param inList    list
          */
         public TestAdapter ( Context inContext, List< String > inList ) {
+            super( inContext, inList );
+        }
+        @Override
+        protected void onBindViewHolderBase ( ViewHolder holder, int position ) {
+            ClickUtil.isFastDoubleClick();
+
+        }
+        @Override
+        public ViewHolder onCreateViewHolder ( ViewGroup viewGroup, int i ) {
+            return null;
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            public ViewHolder ( View itemView ) {
+                super( itemView );
+            }
+        }
+
+    }
+
+    class TestlistAdapter extends BaseListAdapter< TestlistAdapter.ViewHolder, String > {
+        /**
+         * Constructor method
+
+         * @param inContext context
+         * @param inList    list
+         */
+        public TestlistAdapter ( Context inContext, List< String > inList ) {
             super( inContext, inList );
         }
         @Override
