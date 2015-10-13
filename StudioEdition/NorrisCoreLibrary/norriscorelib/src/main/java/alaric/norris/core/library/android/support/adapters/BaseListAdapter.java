@@ -20,12 +20,7 @@ import java.util.List;
  *  @author AlaricNorris
  *  Contact:    Norris.sly@gmail.com
  *  @version Ver 1.0
- *  @Date 2015     2015/10/13     9:49
- *  @see        ${TAGS}
- *	@Fields
  *  @since I used to be a programmer like you, then I took an arrow in the knee
- *	************************************************************************************************************************************************************************************************************
- *	@Methods ${ENCLOSING_TYPE}
  *	************************************************************************************************************************************************************************************************************
  * 	Modified By 	AlaricNorris		 2015/10/139:49
  *	Modifications:	${TODO}
@@ -44,7 +39,7 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Enti
     }
 
     /**
-     * @formatter:on clear the list
+     * clear the list
      */
     public void clear () {
         mList.clear();
