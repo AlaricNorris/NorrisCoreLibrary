@@ -108,3 +108,8 @@ bintray {
         publish = true
     }
 }
+
+// 为注释中文提供解决方案
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
