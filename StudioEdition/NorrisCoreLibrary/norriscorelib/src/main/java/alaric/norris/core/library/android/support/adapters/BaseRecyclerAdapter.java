@@ -41,8 +41,21 @@ public abstract class BaseRecyclerAdapter < VH extends RecyclerView.ViewHolder, 
      * @param inList    list
      */
     public BaseRecyclerAdapter ( Context inContext, List< Entity > inList ) {
-        this.mContext = inContext;
-        this.mList = inList;
+        this( inContext, inList, null );
+    }
+    /**
+     * Constructor method
+     * @param context   context
+     * @param list      list
+     * @param recyclerViewOnItemClickListener       click listener
+     */
+    public BaseRecyclerAdapter (
+            Context context, List< Entity > list,
+            RecyclerViewOnItemClickListener recyclerViewOnItemClickListener
+    ) {
+        mContext = context;
+        mList = list;
+        mRecyclerViewOnItemClickListener = recyclerViewOnItemClickListener;
     }
     /**
      * get an object from the list
