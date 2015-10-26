@@ -10,8 +10,10 @@
 package alaric.norris.core.library.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 /**
  *  ClassName:  AndroidSystemUtils
  *  Function:   ${TODO}  ADD FUNCTION
@@ -59,5 +61,48 @@ public class AndroidSystemUtils {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    /**
+     *
+     * @param inContext context
+     * @param inMetaKey key值
+     * @return
+     */
+    public static String getMetaData ( Context inContext, String inMetaKey ) {
+        String metaValue = "";
+        try {
+            ApplicationInfo info = inContext.getPackageManager().getApplicationInfo(
+                    inContext.getPackageName(), PackageManager.GET_META_DATA
+            );
+
+            metaValue = info.metaData.getString( inMetaKey );
+            Log.i( "nrs", "metaValue" + metaValue );
+        }
+        catch ( Exception e ) {
+            e.printStackTrace();
+        }
+
+        return metaValue;
+    }
+
+    /**
+     *
+     */
+    @Deprecated
+    public static < T > T getMetaData ( Context inContext, String inMetaKey, T t ) {
+        T metaValue = null;
+        try {
+            ApplicationInfo info = inContext.getPackageManager().getApplicationInfo(
+                    inContext.getPackageName(), PackageManager.GET_META_DATA
+            );
+            metaValue = ( T ) info.metaData.getString( inMetaKey );
+            Log.i( "nrs", "metaValue:" + metaValue );
+
+        }
+        catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return metaValue;
     }
 }
