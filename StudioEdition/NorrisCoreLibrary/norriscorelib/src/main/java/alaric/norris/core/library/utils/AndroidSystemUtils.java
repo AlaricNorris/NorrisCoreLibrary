@@ -66,7 +66,7 @@ public class AndroidSystemUtils {
     /**
      *
      * @param inContext context
-     * @param inMetaKey key值
+     * @param inMetaKey key
      * @return
      */
     public static String getMetaData ( Context inContext, String inMetaKey ) {

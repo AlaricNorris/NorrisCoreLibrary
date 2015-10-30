@@ -42,7 +42,8 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Enti
      * clear the list
      */
     public void clear () {
-        mList.clear();
+        if ( mList != null )
+            mList.clear();
     }
 
     /**
@@ -60,6 +61,9 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Enti
      * @return true:success
      */
     public boolean reload ( List< ? extends Entity > list ) {
+
+        if ( mList == null )
+            return false;
         mList.clear();
         return mList.addAll( list );
     }
@@ -84,6 +88,8 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Enti
      * @return itemObject
      */
     public Entity getItem ( int i ) {
+        if ( mList == null )
+            return null;
         return mList.get( i );
     }
 
@@ -92,6 +98,8 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Enti
      * @param entity     new item to add
      */
     public void addItem ( Entity entity ) {
+        if ( mList == null )
+            return;
         mList.add( entity );
     }
 
@@ -101,6 +109,8 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Enti
      * @return removed Item
      */
     public Entity remove ( int i ) {
+        if ( mList == null )
+            return null;
         return mList.remove( i );
     }
     /**
@@ -109,6 +119,8 @@ public abstract class BaseListAdapter < VH extends RecyclerView.ViewHolder, Enti
      * @return true:remove success
      */
     public boolean remove ( Entity entity ) {
+        if ( mList == null )
+            return false;
         return mList.remove( entity );
     }
 
