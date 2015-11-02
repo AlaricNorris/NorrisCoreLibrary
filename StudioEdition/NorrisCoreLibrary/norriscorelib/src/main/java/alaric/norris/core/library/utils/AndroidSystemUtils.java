@@ -30,7 +30,7 @@ import android.util.Log;
 public class AndroidSystemUtils {
 
     /**
-     * 获取版本号
+     * get Version Name
      * @param inContext
      * @return 当前应用的版本号
      */
@@ -43,11 +43,11 @@ public class AndroidSystemUtils {
         }
         catch ( Exception e ) {
             e.printStackTrace();
-            return "获取版本信息异常";
+            return "Get Version Code";
         }
     }
     /**
-     * 获取版本号
+     * get Version Code
      * @param inContext
      * @return 当前应用的版本码
      */
@@ -64,7 +64,7 @@ public class AndroidSystemUtils {
     }
 
     /**
-     *
+     *  get meta-data from manifest
      * @param inContext context
      * @param inMetaKey key
      * @return
@@ -104,5 +104,17 @@ public class AndroidSystemUtils {
             e.printStackTrace();
         }
         return metaValue;
+    }
+
+    /**
+     *  check if this app has the Permission
+     * @param inContext             context
+     * @param inPermissionName      Permission Name
+     * @return true:has    false:don't
+     */
+    public static boolean checkPermission ( Context inContext, String inPermissionName ) {
+        return ( PackageManager.PERMISSION_GRANTED == inContext.getPackageManager().checkPermission(
+                inPermissionName, inContext.getPackageName()
+        ) );
     }
 }
