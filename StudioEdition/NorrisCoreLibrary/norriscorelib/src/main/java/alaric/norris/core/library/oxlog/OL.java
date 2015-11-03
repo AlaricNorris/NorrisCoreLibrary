@@ -9,6 +9,7 @@
  */
 package alaric.norris.core.library.oxlog;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import alaric.norris.core.library.BuildConfig;
@@ -28,6 +29,7 @@ import alaric.norris.core.library.oxtip.TipStrategy;
  */
 public class OL {
 
+    @NonNull
     public static OLConfig mConfig =
             new OLConfig.Builder( TipStrategy.DebugOnly ).defaultTag( "OxLog" )
                                                          .defaultSuffix( "OneShot" )
