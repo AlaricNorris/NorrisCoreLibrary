@@ -16,16 +16,16 @@ import alaric.norris.core.library.BuildConfig;
 import alaric.norris.core.library.oxtip.GodMode;
 import alaric.norris.core.library.oxtip.TipStrategy;
 /**
- @formatter:off ClassName:      OL
- @formatter:off Function:       OxLog
- @formatter:off @author         AlaricNorris
- @formatter:off Contact:        Norris.sly@gmail.com
- @formatter:off @version        Ver 1.0
- @formatter:off @since          I used to be a programmer like you, then I took an arrow in the knee
- @formatter:off ************************************************************************************************************************************************************************************************************
- @formatter:off Modified By 	AlaricNorris		 2015/10/2916:56
- @formatter:off Modifications:	init
- @formatter:off ************************************************************************************************************************************************************************************************************
+ ClassName:      OL
+ Function:       OxLog
+ @author AlaricNorris
+ Contact:        Norris.sly@gmail.com
+ @version Ver 1.0
+ @since I used to be a programmer like you, then I took an arrow in the knee
+  ************************************************************************************************************************************************************************************************************
+ Modified By 	AlaricNorris		 2015/10/2916:56
+ Modifications:	init
+ ************************************************************************************************************************************************************************************************************
  */
 public class OL {
 
@@ -38,7 +38,7 @@ public class OL {
 
     private OL () {
         /* cannot be instantiated */
-        throw new UnsupportedOperationException( "cannot be instantiated" );
+        throw new UnsupportedOperationException( "OL class cannot be instantiated" );
     }
     public static void i ( String logInfo ) {
         i( logInfo, mConfig.defaultSuffix, mConfig.defaultStrategy );
@@ -87,12 +87,13 @@ public class OL {
 
     /**
      *  enable GodMode
+     *  @param mode mode
      *  @return enable successed?
      */
-    public static boolean enableGodMode () {
+    public static boolean enableGodMode ( @GodMode.Mode int mode ) {
         if ( mConfig == null )
             return false;
-        mConfig.setGodMode( new GodMode( GodMode.GOD_ENABLE_ALL ) );
+        mConfig.setGodMode( new GodMode( mode ) );
         return true;
     }
     /**

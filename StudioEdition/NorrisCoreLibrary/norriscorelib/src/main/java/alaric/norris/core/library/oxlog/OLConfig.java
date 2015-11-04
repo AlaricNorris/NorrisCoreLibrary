@@ -1,5 +1,5 @@
 /**
- *  OLConfigdeprecated
+ *  OLConfig
  *  alaric.norris.core.library.oxlog
  *  Function:   config class
  *  date            author
@@ -12,7 +12,7 @@ package alaric.norris.core.library.oxlog;
 import alaric.norris.core.library.oxtip.GodMode;
 import alaric.norris.core.library.oxtip.TipStrategy;
 /**
- *  ClassName:  OLConfigdeprecated
+ *  ClassName:  OLConfig
  *  Function:   config class
  *  @author AlaricNorris
  *  Contact:    Norris.sly@gmail.com
@@ -26,11 +26,11 @@ import alaric.norris.core.library.oxtip.TipStrategy;
 public class OLConfig {
 
     /**
-     *
+     *  defaultTag
      */
     public final String defaultTag;
     /**
-     *
+     *  defaultSuffix
      */
     public final String defaultSuffix;
 
@@ -46,18 +46,16 @@ public class OLConfig {
      */
     public final TipStrategy defaultStrategy;
     private GodMode godMode;
+    /**
+     * Builder Mode constructor
+     * @param inBuilder builder
+     */
     private OLConfig ( Builder inBuilder ) {
         this.defaultTag = inBuilder.defaultTag;
         this.defaultSuffix = inBuilder.defaultSuffix;
         this.releaseSwitcher = inBuilder.releaseSwitcher;
         this.defaultStrategy = inBuilder.defaultStrategy;
 
-    }
-    public GodMode getGodMode () {
-        return godMode;
-    }
-    public void setGodMode ( GodMode godMode ) {
-        this.godMode = godMode;
     }
     public String getDefaultTag () {
         return defaultTag;
@@ -71,6 +69,30 @@ public class OLConfig {
     public TipStrategy getDefaultStrategy () {
         return defaultStrategy;
     }
+    public GodMode getGodMode () {
+        return godMode;
+    }
+    public void setGodMode ( GodMode godMode ) {
+        this.godMode = godMode;
+    }
+    /**
+     *  enable GodMode
+     *  @param mode mode
+     *  @return enable successed?
+     */
+    public boolean enableGodMode ( @GodMode.Mode int mode ) {
+        setGodMode( new GodMode( mode ) );
+        return true;
+    }
+    /**
+     *  disable GodMode
+     *  @return disable successed?
+     */
+    public boolean disableGodMode () {
+        setGodMode( null );
+        return true;
+    }
+
     public static final class Builder {
 
         /**
@@ -111,5 +133,4 @@ public class OLConfig {
             return new OLConfig( this );
         }
     }
-
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="forum_inactive_color">#848484</color>
+	<color name="forum_active_color">#ff923b</color>
+</resources>

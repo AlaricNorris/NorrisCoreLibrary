@@ -1,11 +1,11 @@
 /**
  *  AndroidSystemUtils
  *  alaric.norris.core.library.utils
- * 	Function: 	${TODO}
+ *  Function:   ${TODO}
  *  date            author
  *  *****************************************************
  *  2015/10/23      AlaricNorris
- *	Copyright (c) 2015, TNT All Rights Reserved.
+ *  Copyright (c) 2015, TNT All Rights Reserved.
  */
 package alaric.norris.core.library.utils;
 
@@ -22,17 +22,21 @@ import android.util.Log;
  *  Contact:    Norris.sly@gmail.com
  *  @version Ver 1.0
  *  @since I used to be a programmer like you, then I took an arrow in the knee
- *	************************************************************************************************************************************************************************************************************
- * 	Modified By 	AlaricNorris		 2015/10/2316:07
- *	Modifications:	${TODO}
- *	************************************************************************************************************************************************************************************************************
+ *  ************************************************************************************************************************************************************************************************************
+ *  Modified By     AlaricNorris        2015/10/2316:07
+ *  Modifications:  ${TODO}
+ *  ************************************************************************************************************************************************************************************************************
  */
 public class AndroidSystemUtils {
 
+    private AndroidSystemUtils () {
+        /* cannot be instantiated */
+        throw new UnsupportedOperationException( "Util class cannot be instantiated" );
+    }
     /**
      * get Version Name
-     * @param inContext
-     * @return 当前应用的版本号
+     * @param inContext context
+     * @return Version Name
      */
     public static String getAppVersionName ( Context inContext ) {
         try {
@@ -48,8 +52,8 @@ public class AndroidSystemUtils {
     }
     /**
      * get Version Code
-     * @param inContext
-     * @return 当前应用的版本码
+     * @param inContext context
+     * @return Version Code
      */
     public static int getAppVersionCode ( Context inContext ) {
         try {

@@ -13,6 +13,10 @@ import javax.crypto.spec.SecretKeySpec;
  */
 
 public class AESUtils {
+    private AESUtils () {
+        /* cannot be instantiated */
+        throw new UnsupportedOperationException( "Util class cannot be instantiated" );
+    }
     public static final String TAG = "AESUtils";
 
     public static String encrypt ( String seed, String clearText ) {

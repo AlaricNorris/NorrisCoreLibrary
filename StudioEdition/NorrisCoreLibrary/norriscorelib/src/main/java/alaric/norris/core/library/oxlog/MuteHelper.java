@@ -11,16 +11,16 @@ package alaric.norris.core.library.oxlog;
 
 import java.util.ArrayList;
 /**
- @formatter:off ClassName:      MuteHelper
- @formatter:off Function:       For developer Helps u mute some log
- @formatter:off @author         AlaricNorris
- @formatter:off Contact:        Norris.sly@gmail.com
- @formatter:off @version        Ver 1.0
- @formatter:off @since          I used to be a programmer like you, then I took an arrow in the knee
- @formatter:off ***************************************************************************************************
- @formatter:off Modified By     AlaricNorris     2015/10/30    11:26
- @formatter:off Modifications:  init
- @formatter:off ***************************************************************************************************
+ ClassName:      MuteHelper
+ Function:       For developer Helps u mute some log
+ @author AlaricNorris
+ Contact:        Norris.sly@gmail.com
+ @version Ver 1.0
+ @since I used to be a programmer like you, then I took an arrow in the knee
+  ***************************************************************************************************
+ Modified By     AlaricNorris     2015/10/30    11:26
+ Modifications:  init
+ ***************************************************************************************************
  */
 public class MuteHelper {
 
