@@ -9,14 +9,14 @@ import android.view.Display;
 import android.view.WindowManager;
 
 /**
- * WindowUtil
+ * ScreenUtil
  * @author Jack Tony
  * @see "http://www.cnblogs.com/tianzhijiexian/p/4113937.html"
  * @see "http://www.cnblogs.com/tianzhijiexian/p/4127695.html"
  */
-public class WindowUtil {
+public class ScreenUtil {
 
-    private WindowUtil () {
+    private ScreenUtil () {
         /* cannot be instantiated */
         throw new UnsupportedOperationException( "Util class cannot be instantiated" );
     }
@@ -95,12 +95,12 @@ public class WindowUtil {
     }
 
     /**
-     * getWindow_WH API13 required
+     * getScreen_WH API13 required
      * @param activity  activity
      * @return int[0] = width,int[1] = height
      */
     @SuppressLint ( "NewApi" )
-    public static int[] getWindow_WH ( Activity activity ) {
+    public static int[] getScreen_WH ( Activity activity ) {
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize( size );
@@ -108,18 +108,43 @@ public class WindowUtil {
     }
 
     /**
-     * getWindow_wh in low API
+     * getScreen_wh in low API
      * @param activity  activity
      * @return int[0] = width,int[1] = height
      */
     @Deprecated
-    public static int[] getWindow_wh ( Activity activity ) {
+    public static int[] getScreen_wh ( Activity activity ) {
         int w = activity.getWindowManager().getDefaultDisplay().getWidth();
         int h = activity.getWindowManager().getDefaultDisplay().getHeight();
         return new int[]{ w , h };
 
     }
 
+    /**
+     * getScreenDensity
+     * @param context   context
+     * @return ScreenDensity
+     */
+    public static float getScreenDensity ( Context context ) {
+        return context.getResources().getDisplayMetrics().density;
+    }
+    /**
+     * getScreenWidth
+     * @param context  context
+     * @return ScreenWidth
+     */
+    public static int getScreenW ( Context context ) {
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    /**
+     * getScreenHeight
+     * @param context  context
+     * @return ScreenHeight
+     */
+    public static int getScreenH ( Context context ) {
+        return context.getResources().getDisplayMetrics().heightPixels;
+    }
     /**
      * getScreenWidth
      * @param context  context
@@ -133,7 +158,6 @@ public class WindowUtil {
     }
 
     /**
-     *
      * getScreenHeight
      * @param context  context
      * @return ScreenHeight
@@ -145,4 +169,51 @@ public class WindowUtil {
         return outMetrics.heightPixels;
     }
 
+    /**
+     * 将px值转换为dip或dp值，保证尺寸大小不变
+     *
+     * @param pxValue
+     *            （DisplayMetrics类中属性density）
+     * @return
+     */
+    public static int px2dip ( Context context, float pxValue ) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return ( int ) ( pxValue / scale + 0.5f );
+    }
+
+    /**
+     * 将dip或dp值转换为px值，保证尺寸大小不变
+     *
+     * @param dipValue
+     *            （DisplayMetrics类中属性density）
+     * @return
+     */
+    public static int dip2px ( Context context, float dipValue ) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return ( int ) ( dipValue * scale + 0.5f );
+    }
+
+    /**
+     * 将px值转换为sp值，保证文字大小不变
+     *
+     * @param pxValue
+     *            （DisplayMetrics类中属性scaledDensity）
+     * @return
+     */
+    public static int px2sp ( Context context, float pxValue ) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return ( int ) ( pxValue / fontScale + 0.5f );
+    }
+
+    /**
+     * 将sp值转换为px值，保证文字大小不变
+     *
+     * @param spValue
+     *            （DisplayMetrics类中属性scaledDensity）
+     * @return
+     */
+    public static int sp2px ( Context context, float spValue ) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return ( int ) ( spValue * fontScale + 0.5f );
+    }
 }

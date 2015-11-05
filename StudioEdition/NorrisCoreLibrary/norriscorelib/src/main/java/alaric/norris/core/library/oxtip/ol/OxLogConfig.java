@@ -1,5 +1,5 @@
 /**
- *  OLConfig
+ *  OxLogConfig
  *  alaric.norris.core.library.oxlog
  *  Function:   config class
  *  date            author
@@ -7,12 +7,12 @@
  *  2015/10/29      AlaricNorris
  *	Copyright (c) 2015, TNT All Rights Reserved.
  */
-package alaric.norris.core.library.oxlog;
+package alaric.norris.core.library.oxtip.ol;
 
 import alaric.norris.core.library.oxtip.GodMode;
 import alaric.norris.core.library.oxtip.TipStrategy;
 /**
- *  ClassName:  OLConfig
+ *  ClassName:  OxLogConfig
  *  Function:   config class
  *  @author AlaricNorris
  *  Contact:    Norris.sly@gmail.com
@@ -23,7 +23,7 @@ import alaric.norris.core.library.oxtip.TipStrategy;
  *	Modifications:	init
  *	************************************************************************************************************************************************************************************************************
  */
-public class OLConfig {
+public class OxLogConfig {
 
     /**
      *  defaultTag
@@ -50,7 +50,7 @@ public class OLConfig {
      * Builder Mode constructor
      * @param inBuilder builder
      */
-    private OLConfig ( Builder inBuilder ) {
+    private OxLogConfig ( Builder inBuilder ) {
         this.defaultTag = inBuilder.defaultTag;
         this.defaultSuffix = inBuilder.defaultSuffix;
         this.releaseSwitcher = inBuilder.releaseSwitcher;
@@ -129,8 +129,8 @@ public class OLConfig {
             this.releaseSwitcher = releaseSwitcher;
             return this;
         }
-        public OLConfig build () {
-            return new OLConfig( this );
+        public OxLogConfig build () {
+            return new OxLogConfig( this );
         }
     }
 }

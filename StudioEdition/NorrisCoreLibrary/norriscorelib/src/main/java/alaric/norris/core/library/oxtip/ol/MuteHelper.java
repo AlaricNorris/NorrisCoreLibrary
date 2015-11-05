@@ -7,7 +7,7 @@
  *  2015/10/30         AlaricNorris
  *  Copyright (c) 2015, TNT All Rights Reserved.
  */
-package alaric.norris.core.library.oxlog;
+package alaric.norris.core.library.oxtip.ol;
 
 import java.util.ArrayList;
 /**

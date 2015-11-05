@@ -14,6 +14,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
+
+import alaric.norris.core.library.oxtip.ol.OxLog;
 /**
  *  ClassName:  AndroidSystemUtils
  *  Function:   ${TODO}  ADD FUNCTION
@@ -94,13 +96,14 @@ public class AndroidSystemUtils {
      *
      */
     @Deprecated
-    public static < T > T getMetaData ( Context inContext, String inMetaKey, T t ) {
+    public static < T > T getMetaDataT ( Context inContext, String inMetaKey ) {
         T metaValue = null;
         try {
             ApplicationInfo info = inContext.getPackageManager().getApplicationInfo(
                     inContext.getPackageName(), PackageManager.GET_META_DATA
             );
             metaValue = ( T ) info.metaData.getString( inMetaKey );
+            OxLog.i( "metaValue:" + metaValue );
             Log.i( "nrs", "metaValue:" + metaValue );
 
         }
@@ -120,5 +123,28 @@ public class AndroidSystemUtils {
         return ( PackageManager.PERMISSION_GRANTED == inContext.getPackageManager().checkPermission(
                 inPermissionName, inContext.getPackageName()
         ) );
+    }
+
+    /**
+     *  getPermissionList
+     * @param inContext             context
+     * @return PermissionList
+     * example:
+     * [android.permission.INTERNET,
+     * android.permission.READ_PHONE_STATE,
+     * android.permission.READ_CONTACTS,
+     * android.permission.READ_EXTERNAL_STORAGE ]
+     */
+    public static String[] getPermissionList ( Context inContext ) {
+        String[] permissionStrings = new String[]{ "" };
+        try {
+            permissionStrings = inContext.getPackageManager().getPackageInfo(
+                    inContext.getPackageName(), PackageManager.GET_PERMISSIONS
+            ).requestedPermissions;
+        }
+        catch ( PackageManager.NameNotFoundException e ) {
+            e.printStackTrace();
+        }
+        return permissionStrings;
     }
 }

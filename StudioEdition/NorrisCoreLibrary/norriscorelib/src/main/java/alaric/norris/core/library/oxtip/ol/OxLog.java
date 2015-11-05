@@ -1,5 +1,5 @@
 /**
- *  OL
+ *  OxLog
  *  alaric.norris.core.library.oxlog
  * 	Function:       OxLog
  *  date            author
@@ -7,7 +7,7 @@
  *  2015/10/29      AlaricNorris
  *  Copyright (c) 2015, TNT All Rights Reserved.
  */
-package alaric.norris.core.library.oxlog;
+package alaric.norris.core.library.oxtip.ol;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -16,7 +16,7 @@ import alaric.norris.core.library.BuildConfig;
 import alaric.norris.core.library.oxtip.GodMode;
 import alaric.norris.core.library.oxtip.TipStrategy;
 /**
- ClassName:      OL
+ ClassName:      OxLog
  Function:       OxLog
  @author AlaricNorris
  Contact:        Norris.sly@gmail.com
@@ -27,18 +27,18 @@ import alaric.norris.core.library.oxtip.TipStrategy;
  Modifications:	init
  ************************************************************************************************************************************************************************************************************
  */
-public class OL {
+public class OxLog {
 
     @NonNull
-    public static OLConfig mConfig =
-            new OLConfig.Builder( TipStrategy.DebugOnly ).defaultTag( "OxLog" )
+    public static OxLogConfig mConfig =
+            new OxLogConfig.Builder( TipStrategy.DebugOnly ).defaultTag( "OxLog" )
                                                          .defaultSuffix( "OneShot" )
                                                          .releaseSwitcher( true )
                                                          .build();
 
-    private OL () {
+    private OxLog () {
         /* cannot be instantiated */
-        throw new UnsupportedOperationException( "OL class cannot be instantiated" );
+        throw new UnsupportedOperationException( "OxLog class cannot be instantiated" );
     }
     public static void i ( String logInfo ) {
         i( logInfo, mConfig.defaultSuffix, mConfig.defaultStrategy );
