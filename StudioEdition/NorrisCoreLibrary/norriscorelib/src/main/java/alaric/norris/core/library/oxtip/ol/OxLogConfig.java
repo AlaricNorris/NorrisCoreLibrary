@@ -9,8 +9,12 @@
  */
 package alaric.norris.core.library.oxtip.ol;
 
-import alaric.norris.core.library.oxtip.GodMode;
-import alaric.norris.core.library.oxtip.TipStrategy;
+import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
+
+import java.util.ArrayList;
+
+import alaric.norris.core.library.oxtip.Zeus;
 /**
  *  ClassName:  OxLogConfig
  *  Function:   config class
@@ -24,7 +28,23 @@ import alaric.norris.core.library.oxtip.TipStrategy;
  *	************************************************************************************************************************************************************************************************************
  */
 public class OxLogConfig {
-
+    /**
+     *  Only when BuildConfig.DEBUG = true
+     */
+    public static final int TIP_STRATEGY_DEBUGONLY = 0x1111;
+    /**
+     *  Only when BuildConfig.DEBUG = false
+     */
+    public static final int TIP_STRATEGY_RELEASEONLY = 0x2222;
+    /**
+     *  When DEBUG log
+     *  When Release depend on switch
+     */
+    public static final int TIP_STRATEGY_SWITCHABLERELEASE = 0x3333;
+    /**
+     *  Always debug/release
+     */
+    public static final int TIP_STRATEGY_ALWAYS = 0x4444;
     /**
      *  defaultTag
      */
@@ -33,19 +53,26 @@ public class OxLogConfig {
      *  defaultSuffix
      */
     public final String defaultSuffix;
-
     /**
      * release version log switcher
      * true:    enable log
      * false:   disable log
      */
     public final boolean releaseSwitcher;
-
     /**
      * Log Strategy
      */
-    public final TipStrategy defaultStrategy;
-    private GodMode godMode;
+    @TipStrategy
+    public final int defaultStrategy;
+    /**
+     * The list of suffix to mute
+     */
+    @NonNull
+    private ArrayList< String > Mutable = new ArrayList< String >();
+    /**
+     * Zeus
+     */
+    private Zeus mZeus;
     /**
      * Builder Mode constructor
      * @param inBuilder builder
@@ -66,32 +93,63 @@ public class OxLogConfig {
     public boolean isReleaseSwitcher () {
         return releaseSwitcher;
     }
-    public TipStrategy getDefaultStrategy () {
+    @TipStrategy
+    public int getDefaultStrategy () {
         return defaultStrategy;
     }
-    public GodMode getGodMode () {
-        return godMode;
+    public Zeus getZeus () {
+        return mZeus;
     }
-    public void setGodMode ( GodMode godMode ) {
-        this.godMode = godMode;
+    public void setZeus ( Zeus zeus ) {
+        this.mZeus = zeus;
     }
     /**
-     *  enable GodMode
+     *  enable Zeus
      *  @param mode mode
      *  @return enable successed?
      */
-    public boolean enableGodMode ( @GodMode.Mode int mode ) {
-        setGodMode( new GodMode( mode ) );
+    public boolean enableGodMode ( @Zeus.Mode int mode ) {
+        setZeus( new Zeus( mode ) );
         return true;
     }
     /**
-     *  disable GodMode
+     *  disable Zeus
      *  @return disable successed?
      */
     public boolean disableGodMode () {
-        setGodMode( null );
+        setZeus( null );
         return true;
     }
+    /**
+     *  isMatchMutable(does the suffix match one of the Mutable )
+     * @param suffix    suffix
+     * @return true:mute ; false:not mute
+     */
+    public boolean isMatchMutable ( String suffix ) {
+        if ( Mutable.size() > 0 && Mutable.contains( suffix ) )
+            return true;
+        return false;
+    }
+    /**
+     * Mute a specific suffix
+     * @param suffix
+     */
+    public OxLogConfig muteSuffix ( String suffix ) {
+        Mutable.add( suffix );
+        return this;
+    }
+    /**
+     *  deMuteALl
+     */
+    public OxLogConfig deMute () {
+        Mutable.clear();
+        return this;
+    }
+    @IntDef ( {
+                      TIP_STRATEGY_DEBUGONLY , TIP_STRATEGY_RELEASEONLY ,
+                      TIP_STRATEGY_SWITCHABLERELEASE , TIP_STRATEGY_ALWAYS
+              } )
+    public @interface TipStrategy {}
 
     public static final class Builder {
 
@@ -111,9 +169,10 @@ public class OxLogConfig {
          */
         public boolean releaseSwitcher = true;
 
-        public TipStrategy defaultStrategy = TipStrategy.DebugOnly;
+        @TipStrategy
+        public int defaultStrategy = TIP_STRATEGY_DEBUGONLY;
 
-        public Builder ( TipStrategy defaultStrategy ) {
+        public Builder ( @TipStrategy int defaultStrategy ) {
             this.defaultStrategy = defaultStrategy;
         }
 

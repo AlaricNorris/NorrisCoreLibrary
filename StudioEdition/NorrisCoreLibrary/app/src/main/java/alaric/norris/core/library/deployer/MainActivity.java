@@ -14,7 +14,7 @@ import java.util.List;
 import alaric.norris.core.library.android.support.adapters.BaseListAdapter;
 import alaric.norris.core.library.android.support.adapters.BaseRecyclerAdapter;
 import alaric.norris.core.library.oxtip.ol.OxLog;
-import alaric.norris.core.library.oxtip.TipStrategy;
+import alaric.norris.core.library.oxtip.ol.OxLogConfig;
 import alaric.norris.core.library.utils.ClickUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
-        OxLog.i( "asdfasdf", "nrs", TipStrategy.DebugOnly );
+        OxLog.i( "asdfasdf", "nrs", OxLogConfig.TIP_STRATEGY_DEBUGONLY );
         new TestlistAdapter( getApplicationContext(), null ).reload( null );
     }
 

@@ -30,18 +30,17 @@ import java.io.File;
 public class DataCleanUtil {
 
     /**
-     * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache)
-     *
-     * @param context
+     * cleanInternalCache
+     * (Under dir:[/data/data/com.xxx.xxx/cache])
+     * @param context context
      */
     public static void cleanInternalCache ( Context context ) {
         deleteFilesByDirectory( context.getCacheDir() );
     }
 
     /**
-     * 清除本应用所有数据库
-     *
-     * @param context
+     * cleanDatabases
+     * @param context context
      */
     public static void cleanDatabases ( Context context ) {
         deleteFilesByDirectory(
@@ -50,9 +49,9 @@ public class DataCleanUtil {
     }
 
     /**
-     * 清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs)
-     *
-     * @param context
+     * cleanSharedPreference
+     * (Under dir:[/data/data/com.xxx.xxx/shared_prefs])
+     * @param context context
      */
     public static void cleanSharedPreference ( Context context ) {
         deleteFilesByDirectory(
@@ -61,8 +60,7 @@ public class DataCleanUtil {
     }
 
     /**
-     * 按名字清除本应用数据库.
-     *
+     * cleanDatabaseByName
      * @param context
      * @param dbName
      */
@@ -71,18 +69,18 @@ public class DataCleanUtil {
     }
 
     /**
-     * 清除/data/data/com.xxx.xxx/files下的内容.
-     *
-     * @param context
+     * cleanFiles
+     * (Under dir:[/data/data/com.xxx.xxx/files])
+     * @param context context
      */
     public static void cleanFiles ( Context context ) {
         deleteFilesByDirectory( context.getFilesDir() );
     }
 
     /**
-     * 清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache).
-     *
-     * @param context
+     * cleanExternalCache
+     * (Under dir:[/data/data/com.xxx.xxx/cache])
+     * @param context context
      */
     public static void cleanExternalCache ( Context context ) {
         if ( Environment.getExternalStorageState().equals( Environment.MEDIA_MOUNTED ) ) {
@@ -91,18 +89,18 @@ public class DataCleanUtil {
     }
 
     /**
-     * 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
-     * @param filePath
+     * cleanCustomCache
+     * Careful!Don't delete the wrong dir!
+     * @param filePath  filePath
      */
     public static void cleanCustomCache ( String filePath ) {
         deleteFilesByDirectory( new File( filePath ) );
     }
 
     /**
-     * 清除本应用所有的数据.
-     *
-     * @param context
-     * @param filepath
+     * cleanApplicationData
+     * @param context   context
+     * @param filepath  filepath
      */
     public static void cleanApplicationData ( Context context, String... filepath ) {
         cleanInternalCache( context );
@@ -116,9 +114,8 @@ public class DataCleanUtil {
     }
 
     /**
-     * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理
-     *
-     * @param directory
+     * deleteFilesByDirectory
+     * @param directory directory
      */
     private static void deleteFilesByDirectory ( File directory ) {
         try {
