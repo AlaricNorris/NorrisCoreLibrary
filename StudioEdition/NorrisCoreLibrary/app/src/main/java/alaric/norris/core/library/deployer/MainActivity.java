@@ -22,8 +22,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
+        OxLog.mConfig = new OxLogConfig.Builder(OxLogConfig.TIP_STRATEGY_DEBUG_ONLY ).defaultSuffix( "" )
+                .defaultTag(  "").releaseSwitcher( false )
+                .build();
         setContentView( R.layout.activity_main );
-        OxLog.i( "asdfasdf", "nrs", OxLogConfig.TIP_STRATEGY_DEBUGONLY );
+        OxLog.i( "asdfasdf", "nrs", OxLogConfig.TIP_STRATEGY_DEBUG_ONLY );
         new TestlistAdapter( getApplicationContext(), null ).reload( null );
     }
 

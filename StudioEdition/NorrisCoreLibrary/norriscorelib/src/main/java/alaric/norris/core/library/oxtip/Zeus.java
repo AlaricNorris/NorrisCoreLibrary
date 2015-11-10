@@ -24,15 +24,15 @@ import android.support.annotation.IntDef;
  */
 public class Zeus {
     /**
-     * In any case, Zeus need log
+     * In any case, Zeus need tip
      */
     public static final int ZEUS_ENABLE_ALL = 0x8888;
     /**
-     * Despite the Mutable, Zeus need log
+     * Despite the Mutable, Zeus need tip
      */
     public static final int ZEUS_ENABLE_ALL_BUT_MUTE = 0x4444;
     /**
-     * In any case, Zeus doesn't need log
+     * In any case, Zeus doesn't need tip
      */
     public static final int ZEUS_DISABLE_ALL = ~ 0x8888;
     @Mode

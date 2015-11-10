@@ -31,16 +31,16 @@ public class OxLogConfig {
     /**
      *  Only when BuildConfig.DEBUG = true
      */
-    public static final int TIP_STRATEGY_DEBUGONLY = 0x1111;
+    public static final int TIP_STRATEGY_DEBUG_ONLY = 0x1111;
     /**
      *  Only when BuildConfig.DEBUG = false
      */
-    public static final int TIP_STRATEGY_RELEASEONLY = 0x2222;
+    public static final int TIP_STRATEGY_RELEASE_ONLY = 0x2222;
     /**
      *  When DEBUG log
      *  When Release depend on switch
      */
-    public static final int TIP_STRATEGY_SWITCHABLERELEASE = 0x3333;
+    public static final int TIP_STRATEGY_SWITCHABLE_RELEASE = 0x3333;
     /**
      *  Always debug/release
      */
@@ -54,16 +54,16 @@ public class OxLogConfig {
      */
     public final String defaultSuffix;
     /**
-     * release version log switcher
-     * true:    enable log
-     * false:   disable log
-     */
-    public final boolean releaseSwitcher;
-    /**
      * Log Strategy
      */
     @TipStrategy
     public final int defaultStrategy;
+    /**
+     * release version log switcher
+     * true:    enable log
+     * false:   disable log
+     */
+    private boolean releaseSwitcher;
     /**
      * The list of suffix to mute
      */
@@ -84,14 +84,19 @@ public class OxLogConfig {
         this.defaultStrategy = inBuilder.defaultStrategy;
 
     }
-    public String getDefaultTag () {
-        return defaultTag;
-    }
-    public String getDefaultSuffix () {
-        return defaultSuffix;
-    }
+    /**
+     * check the ReleaseSwitcher
+     * @return true:on ; false:off
+     */
     public boolean isReleaseSwitcher () {
         return releaseSwitcher;
+    }
+    /**
+     * turn on/off the release switcher
+     * @param releaseSwitcher
+     */
+    public void setReleaseSwitcher ( boolean releaseSwitcher ) {
+        this.releaseSwitcher = releaseSwitcher;
     }
     @TipStrategy
     public int getDefaultStrategy () {
@@ -139,15 +144,15 @@ public class OxLogConfig {
         return this;
     }
     /**
-     *  deMuteALl
+     *  deMuteAll
      */
     public OxLogConfig deMute () {
         Mutable.clear();
         return this;
     }
     @IntDef ( {
-                      TIP_STRATEGY_DEBUGONLY , TIP_STRATEGY_RELEASEONLY ,
-                      TIP_STRATEGY_SWITCHABLERELEASE , TIP_STRATEGY_ALWAYS
+                      TIP_STRATEGY_DEBUG_ONLY , TIP_STRATEGY_RELEASE_ONLY ,
+                      TIP_STRATEGY_SWITCHABLE_RELEASE , TIP_STRATEGY_ALWAYS
               } )
     public @interface TipStrategy {}
 
@@ -170,7 +175,7 @@ public class OxLogConfig {
         public boolean releaseSwitcher = true;
 
         @TipStrategy
-        public int defaultStrategy = TIP_STRATEGY_DEBUGONLY;
+        public int defaultStrategy = TIP_STRATEGY_DEBUG_ONLY;
 
         public Builder ( @TipStrategy int defaultStrategy ) {
             this.defaultStrategy = defaultStrategy;

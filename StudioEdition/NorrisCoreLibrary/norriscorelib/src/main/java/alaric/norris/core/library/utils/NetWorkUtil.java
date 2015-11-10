@@ -29,19 +29,21 @@ import android.text.TextUtils;
  ***************************************************************************************************
  */
 public class NetWorkUtil {
-    /** 没有网络 */
+    /** no network */
     public static final int NETWORKTYPE_INVALID = 0;
-    /** wap网络 */
+    /** wap network */
     public static final int NETWORKTYPE_WAP = 1;
-    /** 2G网络 */
+    /** 2G network */
     public static final int NETWORKTYPE_2G = 2;
-    /** 3G和3G以上网络，或统称为快速网络 */
+    /** 3G network */
     public static final int NETWORKTYPE_3G = 3;
-    /** wifi网络 */
+    /** wifi network */
     public static final int NETWORKTYPE_WIFI = 4;
     private static final String TAG = "NetWorkUtil";
     /**
-     * 网络连接是否可用
+     * isConnnected
+     * @param context    context
+     * @return true:connected; false not
      */
     public static boolean isConnnected ( Context context ) {
         ConnectivityManager connectivityManager =
@@ -121,9 +123,9 @@ public class NetWorkUtil {
         return type;
     }
     /****
-     * 获取当前网络的状态
-     * @param mContext
-     * @return int
+     * getNetworkState
+     * @param mContext  mContext
+     * @return int   NetworkState
      */
     public static int getNetworkState ( Context mContext ) {
         NetworkInfo networkInfo = ( ( ConnectivityManager ) mContext.getSystemService(
@@ -199,9 +201,6 @@ public class NetWorkUtil {
                 return false;
         }
     }
-    /**
-     * 检测网络状态
-     */
     public static boolean checkNetworkConnectionState ( Context context ) {
         boolean flag = false;
         ConnectivityManager connectivityManager =

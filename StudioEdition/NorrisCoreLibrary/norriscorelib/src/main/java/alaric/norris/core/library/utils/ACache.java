@@ -618,7 +618,7 @@ public class ACache {
         }
 
         /*
-         * Bitmap → byte[]
+         * Bitmap  byte[]
          */
         private static byte[] Bitmap2Bytes ( Bitmap bm ) {
             if ( bm == null ) {
@@ -630,7 +630,7 @@ public class ACache {
         }
 
         /*
-         * byte[] → Bitmap
+         * byte[]  Bitmap
          */
         private static Bitmap Bytes2Bimap ( byte[] b ) {
             if ( b.length == 0 ) {
@@ -640,7 +640,7 @@ public class ACache {
         }
 
         /*
-         * Drawable → Bitmap
+         * Drawable  Bitmap
          */
         private static Bitmap drawable2Bitmap ( Drawable drawable ) {
             if ( drawable == null ) {
@@ -659,7 +659,7 @@ public class ACache {
         }
 
         /*
-         * Bitmap → Drawable
+         * Bitmap  Drawable
          */
         @SuppressWarnings ( "deprecation" )
         private static Drawable bitmap2Drawable ( Bitmap bm ) {
@@ -697,8 +697,7 @@ public class ACache {
     }
 
     /**
-     * @title ACacheManager
-     * @version 1.0
+     *  ACacheManager
      */
     public class ACacheManager {
         private final AtomicLong cacheSize;

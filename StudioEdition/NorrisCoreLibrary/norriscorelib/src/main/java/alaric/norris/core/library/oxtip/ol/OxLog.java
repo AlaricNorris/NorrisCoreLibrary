@@ -30,12 +30,14 @@ public class OxLog {
 
     @NonNull
     public static OxLogConfig mConfig =
-            new OxLogConfig.Builder( OxLogConfig.TIP_STRATEGY_DEBUGONLY ).defaultTag( "OxLog" )
-                                                                         .defaultSuffix( "OneShot" )
-                                                                         .releaseSwitcher( true )
-                                                                         .build()
-                                                                         .muteSuffix( "" )
-                                                                         .deMute();
+            new OxLogConfig.Builder( OxLogConfig.TIP_STRATEGY_DEBUG_ONLY ).defaultTag( "OxLog" )
+                                                                          .defaultSuffix(
+                                                                                  "OneShot"
+                                                                          )
+                                                                          .releaseSwitcher( false )
+                                                                          .build()
+                                                                          .muteSuffix( "" )
+                                                                          .deMute();
 
     private OxLog () {
         /* cannot be instantiated */
@@ -56,18 +58,18 @@ public class OxLog {
             if ( mConfig.isMatchMutable( tagSuffix ) )
                 return;
             switch (inStrategy) {
-                case OxLogConfig.TIP_STRATEGY_DEBUGONLY:
+                case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.v( mConfig.defaultTag + tagSuffix, logInfo );
                     break;
-                case OxLogConfig.TIP_STRATEGY_RELEASEONLY:
+                case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.v( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
-                case OxLogConfig.TIP_STRATEGY_SWITCHABLERELEASE:
+                case OxLogConfig.TIP_STRATEGY_SWITCHABLE_RELEASE:
                     if ( BuildConfig.DEBUG )
                         Log.v( mConfig.defaultTag + tagSuffix, logInfo );
-                    else if ( mConfig.releaseSwitcher )
+                    else if ( mConfig.isReleaseSwitcher() )
                         Log.v( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
                 case OxLogConfig.TIP_STRATEGY_ALWAYS:
@@ -106,18 +108,18 @@ public class OxLog {
             if ( mConfig.isMatchMutable( tagSuffix ) )
                 return;
             switch (inStrategy) {
-                case OxLogConfig.TIP_STRATEGY_DEBUGONLY:
+                case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.d( mConfig.defaultTag + tagSuffix, logInfo );
                     break;
-                case OxLogConfig.TIP_STRATEGY_RELEASEONLY:
+                case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.d( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
-                case OxLogConfig.TIP_STRATEGY_SWITCHABLERELEASE:
+                case OxLogConfig.TIP_STRATEGY_SWITCHABLE_RELEASE:
                     if ( BuildConfig.DEBUG )
                         Log.d( mConfig.defaultTag + tagSuffix, logInfo );
-                    else if ( mConfig.releaseSwitcher )
+                    else if ( mConfig.isReleaseSwitcher() )
                         Log.d( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
                 case OxLogConfig.TIP_STRATEGY_ALWAYS:
@@ -155,18 +157,18 @@ public class OxLog {
             if ( mConfig.isMatchMutable( tagSuffix ) )
                 return;
             switch (inStrategy) {
-                case OxLogConfig.TIP_STRATEGY_DEBUGONLY:
+                case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.i( mConfig.defaultTag + tagSuffix, logInfo );
                     break;
-                case OxLogConfig.TIP_STRATEGY_RELEASEONLY:
+                case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.i( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
-                case OxLogConfig.TIP_STRATEGY_SWITCHABLERELEASE:
+                case OxLogConfig.TIP_STRATEGY_SWITCHABLE_RELEASE:
                     if ( BuildConfig.DEBUG )
                         Log.i( mConfig.defaultTag + tagSuffix, logInfo );
-                    else if ( mConfig.releaseSwitcher )
+                    else if ( mConfig.isReleaseSwitcher() )
                         Log.i( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
                 case OxLogConfig.TIP_STRATEGY_ALWAYS:
@@ -205,18 +207,18 @@ public class OxLog {
             if ( mConfig.isMatchMutable( tagSuffix ) )
                 return;
             switch (inStrategy) {
-                case OxLogConfig.TIP_STRATEGY_DEBUGONLY:
+                case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.w( mConfig.defaultTag + tagSuffix, logInfo );
                     break;
-                case OxLogConfig.TIP_STRATEGY_RELEASEONLY:
+                case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.w( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
-                case OxLogConfig.TIP_STRATEGY_SWITCHABLERELEASE:
+                case OxLogConfig.TIP_STRATEGY_SWITCHABLE_RELEASE:
                     if ( BuildConfig.DEBUG )
                         Log.w( mConfig.defaultTag + tagSuffix, logInfo );
-                    else if ( mConfig.releaseSwitcher )
+                    else if ( mConfig.isReleaseSwitcher() )
                         Log.w( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
                 case OxLogConfig.TIP_STRATEGY_ALWAYS:
@@ -255,18 +257,18 @@ public class OxLog {
             if ( mConfig.isMatchMutable( tagSuffix ) )
                 return;
             switch (inStrategy) {
-                case OxLogConfig.TIP_STRATEGY_DEBUGONLY:
+                case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.e( mConfig.defaultTag + tagSuffix, logInfo );
                     break;
-                case OxLogConfig.TIP_STRATEGY_RELEASEONLY:
+                case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.e( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
-                case OxLogConfig.TIP_STRATEGY_SWITCHABLERELEASE:
+                case OxLogConfig.TIP_STRATEGY_SWITCHABLE_RELEASE:
                     if ( BuildConfig.DEBUG )
                         Log.e( mConfig.defaultTag + tagSuffix, logInfo );
-                    else if ( mConfig.releaseSwitcher )
+                    else if ( mConfig.isReleaseSwitcher() )
                         Log.e( mConfig.defaultTag + tagSuffix, logInfo );
                     return;
                 case OxLogConfig.TIP_STRATEGY_ALWAYS:

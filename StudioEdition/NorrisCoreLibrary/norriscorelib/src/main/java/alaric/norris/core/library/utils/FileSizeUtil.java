@@ -33,10 +33,9 @@ public class FileSizeUtil {
     }
 
     /**
-     * 添加要计算的文件或者目录
-     *
-     * @param file 要计算的文件或者目录
-     * @return
+     * set the File/Dir to calculate
+     * @param file the File/Dir to calculate
+     * @return this
      * @throws FileNotFoundException
      */
     public static FileSizeUtil setFile ( File file ) throws FileNotFoundException {
@@ -59,10 +58,10 @@ public class FileSizeUtil {
         }
     }
     /**
-     * 返回由此抽象路径名表示的目录的大小。
+     * getDirSize
      *
-     * @param dir 必须是一个有效的存在的目录.
-     * @return 此抽象路径名表示的文件的长度，以字节为单位.
+     * @param dir dir
+     * @return DirSize (byte)
      */
     private static long getDirSize ( File dir ) {
         if ( DEBUG )
@@ -135,11 +134,9 @@ public class FileSizeUtil {
         return decimalFormat.format( size ) + "B";
     }
     /**
-     * 设置要计算的文件或者目录大小
-     *
-     * @param file 要计算的文件或者目录
-     * @return
-     * @throws FileNotFoundException
+     *  set the size of destiny File/Dir
+     * @param size the size of destiny File/Dir
+     * @return this
      */
     public static FileSizeUtil setSize ( double size ) {
         if ( DEBUG )
