@@ -27,14 +27,16 @@ import alaric.norris.core.library.oxtip.Zeus;
  */
 public class OxLog {
 
+    public static final String OX_TAG = "OxLog";
+    public static final String OX_SUFFIX = "OneShot";
     @NonNull
     public static OxLogConfig mConfig =
             new OxLogConfig.Builder( true, OxLogConfig.TIP_STRATEGY_DEBUG_ONLY ).defaultTag(
-                    "OxLog"
-            ).defaultSuffix(
-                    "OneShot"
-            ).releaseSwitcher( false ).build().muteSuffix( "" ).deMute();
-
+                    OX_TAG
+            ).defaultSuffix( OX_SUFFIX ).releaseSwitcher( false ).build().muteSuffix( "" ).deMute();
+    /**
+     * private constructor
+     */
     private OxLog () {
         /* cannot be instantiated */
         throw new UnsupportedOperationException( "OxLog class cannot be instantiated" );

@@ -166,11 +166,11 @@ public class OxLogConfig {
         /**
          *
          */
-        public String DefaultTag = "OxLog";
+        public String DefaultTag = OxLog.OX_TAG;
         /**
          *
          */
-        public String DefaultSuffix = "OneShot";
+        public String DefaultSuffix = OxLog.OX_SUFFIX;
         /**
          *
          */
