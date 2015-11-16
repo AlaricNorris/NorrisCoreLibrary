@@ -61,7 +61,7 @@ public class OxLog {
                 case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.v( mConfig.defaultTag + tagSuffix, logInfo );
-                    break;
+                    return;
                 case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.v( mConfig.defaultTag + tagSuffix, logInfo );
@@ -111,7 +111,7 @@ public class OxLog {
                 case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.d( mConfig.defaultTag + tagSuffix, logInfo );
-                    break;
+                    return;
                 case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.d( mConfig.defaultTag + tagSuffix, logInfo );
@@ -160,7 +160,7 @@ public class OxLog {
                 case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.i( mConfig.defaultTag + tagSuffix, logInfo );
-                    break;
+                    return;
                 case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.i( mConfig.defaultTag + tagSuffix, logInfo );
@@ -210,7 +210,7 @@ public class OxLog {
                 case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.w( mConfig.defaultTag + tagSuffix, logInfo );
-                    break;
+                    return;
                 case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.w( mConfig.defaultTag + tagSuffix, logInfo );
@@ -260,7 +260,7 @@ public class OxLog {
                 case OxLogConfig.TIP_STRATEGY_DEBUG_ONLY:
                     if ( BuildConfig.DEBUG )
                         Log.e( mConfig.defaultTag + tagSuffix, logInfo );
-                    break;
+                    return;
                 case OxLogConfig.TIP_STRATEGY_RELEASE_ONLY:
                     if ( ! BuildConfig.DEBUG )
                         Log.e( mConfig.defaultTag + tagSuffix, logInfo );
