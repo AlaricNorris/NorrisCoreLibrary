@@ -54,6 +54,9 @@ public class OxLogConfig {
      */
     public final String DefaultSuffix;
 
+    /**
+     *  Reference to BuildConfig.Debug
+     */
     public final boolean BuildConfig_Debug;
     /**
      * Log Strategy
@@ -183,6 +186,11 @@ public class OxLogConfig {
         @TipStrategy
         public int DefaultStrategy = TIP_STRATEGY_DEBUG_ONLY;
 
+        /**
+         * Builder Constructor
+         * @param isDebug           Reference to BuildConfig.Debug
+         * @param defaultStrategy   defaultStrategy
+         */
         public Builder ( boolean isDebug, @TipStrategy int defaultStrategy ) {
             this.BuildConfig_Debug = isDebug;
             this.DefaultStrategy = defaultStrategy;
