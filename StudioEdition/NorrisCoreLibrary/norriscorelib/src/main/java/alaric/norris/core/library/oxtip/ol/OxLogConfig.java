@@ -46,24 +46,26 @@ public class OxLogConfig {
      */
     public static final int TIP_STRATEGY_ALWAYS = 0x4444;
     /**
-     *  defaultTag
+     *  DefaultTag
      */
-    public final String defaultTag;
+    public final String DefaultTag;
     /**
-     *  defaultSuffix
+     *  DefaultSuffix
      */
-    public final String defaultSuffix;
+    public final String DefaultSuffix;
+
+    public final boolean BuildConfig_Debug;
     /**
      * Log Strategy
      */
     @TipStrategy
-    public final int defaultStrategy;
+    public final int DefaultStrategy;
     /**
      * release version log switcher
      * true:    enable log
      * false:   disable log
      */
-    private boolean releaseSwitcher;
+    private boolean ReleaseSwitcher;
     /**
      * The list of suffix to mute
      */
@@ -78,29 +80,29 @@ public class OxLogConfig {
      * @param inBuilder builder
      */
     private OxLogConfig ( Builder inBuilder ) {
-        this.defaultTag = inBuilder.defaultTag;
-        this.defaultSuffix = inBuilder.defaultSuffix;
-        this.releaseSwitcher = inBuilder.releaseSwitcher;
-        this.defaultStrategy = inBuilder.defaultStrategy;
-
+        this.DefaultTag = inBuilder.DefaultTag;
+        this.DefaultSuffix = inBuilder.DefaultSuffix;
+        this.ReleaseSwitcher = inBuilder.ReleaseSwitcher;
+        this.DefaultStrategy = inBuilder.DefaultStrategy;
+        this.BuildConfig_Debug = inBuilder.BuildConfig_Debug;
     }
     /**
      * check the ReleaseSwitcher
      * @return true:on ; false:off
      */
     public boolean isReleaseSwitcher () {
-        return releaseSwitcher;
+        return ReleaseSwitcher;
     }
     /**
      * turn on/off the release switcher
      * @param releaseSwitcher
      */
     public void setReleaseSwitcher ( boolean releaseSwitcher ) {
-        this.releaseSwitcher = releaseSwitcher;
+        this.ReleaseSwitcher = releaseSwitcher;
     }
     @TipStrategy
     public int getDefaultStrategy () {
-        return defaultStrategy;
+        return DefaultStrategy;
     }
     public Zeus getZeus () {
         return mZeus;
@@ -161,36 +163,41 @@ public class OxLogConfig {
         /**
          *
          */
-        public String defaultTag = "OxLog";
+        public String DefaultTag = "OxLog";
         /**
          *
          */
-        public String defaultSuffix = "OneShot";
+        public String DefaultSuffix = "OneShot";
+        /**
+         *
+         */
+        public boolean BuildConfig_Debug = true;
 
         /**
          * release version log switcher
          * true:    enable log
          * false:   disable log
          */
-        public boolean releaseSwitcher = true;
+        public boolean ReleaseSwitcher = true;
 
         @TipStrategy
-        public int defaultStrategy = TIP_STRATEGY_DEBUG_ONLY;
+        public int DefaultStrategy = TIP_STRATEGY_DEBUG_ONLY;
 
-        public Builder ( @TipStrategy int defaultStrategy ) {
-            this.defaultStrategy = defaultStrategy;
+        public Builder ( boolean isDebug, @TipStrategy int defaultStrategy ) {
+            this.BuildConfig_Debug = isDebug;
+            this.DefaultStrategy = defaultStrategy;
         }
 
         public Builder defaultTag ( String defaultTag ) {
-            this.defaultTag = defaultTag;
+            this.DefaultTag = defaultTag;
             return this;
         }
         public Builder defaultSuffix ( String defaultSuffix ) {
-            this.defaultSuffix = defaultSuffix;
+            this.DefaultSuffix = defaultSuffix;
             return this;
         }
         public Builder releaseSwitcher ( boolean releaseSwitcher ) {
-            this.releaseSwitcher = releaseSwitcher;
+            this.ReleaseSwitcher = releaseSwitcher;
             return this;
         }
         public OxLogConfig build () {
