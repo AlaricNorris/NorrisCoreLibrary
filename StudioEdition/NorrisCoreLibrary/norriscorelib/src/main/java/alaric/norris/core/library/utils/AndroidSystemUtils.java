@@ -9,6 +9,8 @@
  */
 package alaric.norris.core.library.utils;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -146,5 +148,17 @@ public class AndroidSystemUtils {
             e.printStackTrace();
         }
         return permissionStrings;
+    }
+
+    /**
+     * Copy string to clipboard
+     * @param content   content
+     * @param context   context
+     */
+    public static void copy2ClipBoard ( String content, Context context ) {
+        // 得到剪贴板管理器
+        ClipboardManager mClipboardManager =
+                ( ClipboardManager ) context.getSystemService( Context.CLIPBOARD_SERVICE );
+        mClipboardManager.setPrimaryClip( ClipData.newPlainText( null, ( content.trim() ) ) );
     }
 }
