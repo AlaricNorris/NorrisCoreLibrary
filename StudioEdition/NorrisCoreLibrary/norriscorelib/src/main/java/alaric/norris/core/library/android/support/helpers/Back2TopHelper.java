@@ -1,11 +1,10 @@
 /**
  *  Back2TopHelper
  *  com.alaric.norris.app.credit.points.ui.helpers
- * 	Function： 	${TODO}
+ *  Function:   ${TODO}
  *  date            author
- *  ──────────────────────────────────
  *  2015/9/22      AlaricNorris
- *	Copyright (c) 2015, TNT All Rights Reserved.
+ *  Copyright (c) 2015, TNT All Rights Reserved.
  */
 package alaric.norris.core.library.android.support.helpers;
 
@@ -23,19 +22,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
  *  Function:   ${TODO}  ADD FUNCTION
  *  Reason:     ${TODO}  ADD REASON
  *  @author AlaricNorris
- *  @contact Norris.sly@gmail.com
+ *  contact Norris.sly@gmail.com
  *  @version Ver 1.0
  *  @since I used to be a programmer like you, then I took an arrow in the knee
- *  @Date 2015     2015/9/22     13:34
- *  @see        ${TAGS}
- *  ──────────────────────────────────────────────────────────────────────────────────────────────────────
- *	@Fields
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
- *	@Methods ${ENCLOSING_TYPE}
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
- * 	Modified By 	AlaricNorris		 2015/9/2213:34
- *	Modifications:	${TODO}
- *	──────────────────────────────────────────────────────────────────────────────────────────────────────
+ *  Modified By     AlaricNorris         2015/9/2213:34
+ *  Modifications:  ${TODO}
  */
 public class Back2TopHelper {
     public static boolean applyFeatures ( final RecyclerView inRecyclerView, final View inView )
@@ -82,11 +73,10 @@ public class Back2TopHelper {
                         return;
                     }
                     switch (newState) {
-                        // 当不滚动时
-                        case RecyclerView.SCROLL_STATE_IDLE:// 是当屏幕停止滚动时
-                            // 区分LayoutManager类型，从而调用API
+                        // when not scrolling
+                        case RecyclerView.SCROLL_STATE_IDLE:
                             if ( recyclerView.getLayoutManager() instanceof LinearLayoutManager ) {
-                                // 判断滚动到顶部
+                                // scroll to bottom
                                 if ( ( ( LinearLayoutManager ) recyclerView.getLayoutManager() ).findFirstVisibleItemPosition() ==
                                         0 ) {
                                     inView.setVisibility( View.GONE );
@@ -97,7 +87,7 @@ public class Back2TopHelper {
                                 }
                             }
                             else if ( recyclerView.getLayoutManager() instanceof GridLayoutManager ) {
-                                // 判断滚动到顶部
+                                // scroll to top
                                 if ( ( ( GridLayoutManager ) recyclerView.getLayoutManager() ).findFirstVisibleItemPosition() ==
                                         0 ) {
                                     inView.setVisibility( View.GONE );
