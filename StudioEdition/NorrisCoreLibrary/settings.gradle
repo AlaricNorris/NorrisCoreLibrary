@@ -1,1 +1,1 @@
-include ':app', ':norriscorelib'
+include ':app', ':norriscorelib', ':passwordinputwidgets'
