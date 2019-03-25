@@ -1,5 +1,7 @@
 package alaric.norris.core.library.utils;
 
+import com.blankj.utilcode.util.Utils;
+
 import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
@@ -20,6 +22,8 @@ public class AESUtils {
     public static final String TAG = "AESUtils";
 
     public static String encrypt ( String seed, String clearText ) {
+        Utils.getApp();
+
         //        Log.i( TAG, "seed=" + seed + ",:" + clearText );
         byte[] result = null;
         try {
