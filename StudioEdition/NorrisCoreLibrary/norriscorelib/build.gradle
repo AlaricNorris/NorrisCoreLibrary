@@ -1,9 +1,24 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
 
-version = "1.2.4"
+//apply plugin: 'maven'
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        // 配置本地仓库路径，项目根目录下的repository目录中
+//        repository(url: uri('../repository'))
+//        pom.groupId = "com.openxu.viewlib"// 唯一标识（通常为模块包名，也可以任意）
+//        pom.artifactId = "OXViewLib" // 项目名称（通常为类库模块名称，也可以任意）
+//        pom.version = "1.0.0" // 版本号
+//    }
+//}
+
+
+
+
+
+
 
 android {
     compileSdkVersion rootProject.ext.repo.compileSdkVersion
@@ -35,10 +50,7 @@ dependencies {
     implementation rootProject.ext.dependencies["recyclerview-v7"]
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["constraint-layout"]
-
-
     implementation rootProject.ext.dependencies["utilcode"]
-
     implementation 'com.belerweb:pinyin4j:2.5.0'
 }
 
@@ -49,76 +61,92 @@ def gitUrl = 'https://github.com/AlaricNorris/NorrisCoreLibrary.git' // project 
 group = "alaric.norris.core.library"
 
 // 根节点添加
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                name 'NorrisCoreLibrary'
-                url siteUrl
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'AlaricNorris'
-                        name 'AlaricNorris'
-                        email 'norris.sly@gmail.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
+//install {
+//    repositories.mavenInstaller {
+//        // This generates POM.xml with proper parameters
+//        pom {
+//            project {
+//                packaging 'aar'
+//                name 'NorrisCoreLibrary'
+//                url siteUrl
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'AlaricNorris'
+//                        name 'AlaricNorris'
+//                        email 'norris.sly@gmail.com'
+//                    }
+//                }
+//                scm {
+//                    connection gitUrl
+//                    developerConnection gitUrl
+//                    url siteUrl
+//                }
+//            }
+//        }
+//    }
+//}
 
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
 
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
+//artifacts {
+//    archives javadocJar
+//    archives sourcesJar
+//}
 
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "norris-core-lib"                // project name in jcenter
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
-    }
-}
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//    configurations = ['archives']
+//    pkg {
+//        repo = "maven"
+//        name = "norris-core-lib"                // project name in jcenter
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = ["Apache-2.0"]
+//        publish = true
+//    }
+//}
 
 // 为注释中文提供解决方案
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
+
+
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'AlaricNorris' //bintray账户下某个组织id
+    groupId = 'alaric.norris.core.library' //maven仓库下库的包名，一般为模块包名
+    artifactId = 'norris-core-lib' //项目名称
+    publishVersion = rootProject.ext.repo.versionName //版本号
+    desc = 'NorrisCoreLibrary' //项目介绍，可以不写
+    website = siteUrl //项目主页，可以不写
+}
+
+
+
+

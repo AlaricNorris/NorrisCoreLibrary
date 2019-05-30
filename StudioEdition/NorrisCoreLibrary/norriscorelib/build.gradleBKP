@@ -1,0 +1,124 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+version = "1.2.4"
+
+android {
+    compileSdkVersion rootProject.ext.repo.compileSdkVersion
+    buildToolsVersion rootProject.ext.repo.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.repo.minSdkVersion
+        targetSdkVersion rootProject.ext.repo.targetSdkVersion
+        versionCode rootProject.ext.repo.versionCode
+        versionName rootProject.ext.repo.versionName
+        // dex突破65535的限制
+        multiDexEnabled true //
+//        versionCode 7
+//        versionName "1.2.4"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.dependencies["support-v4"]
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["constraint-layout"]
+
+
+    implementation rootProject.ext.dependencies["utilcode"]
+
+    implementation 'com.belerweb:pinyin4j:2.5.0'
+}
+
+// 根节点添加
+def siteUrl = 'https://github.com/AlaricNorris/NorrisCoreLibrary'    // project homepage
+def gitUrl = 'https://github.com/AlaricNorris/NorrisCoreLibrary.git' // project git
+
+group = "alaric.norris.core.library"
+
+// 根节点添加
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                name 'NorrisCoreLibrary'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'AlaricNorris'
+                        name 'AlaricNorris'
+                        email 'norris.sly@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "norris-core-lib"                // project name in jcenter
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
+// 为注释中文提供解决方案
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
